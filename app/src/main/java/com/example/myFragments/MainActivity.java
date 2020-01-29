@@ -1,0 +1,50 @@
+package com.example.myFragments;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import android.os.Bundle;
+import android.util.Log;
+
+public class MainActivity extends AppCompatActivity implements CalculatorFragment.IButtonFragment1, RecyclerviewFragment.IButtonFragment2 {
+
+    RecyclerviewAdapter adapter;
+    CalculatorFragment calculatorFragment = CalculatorFragment.create(this);
+    RecyclerviewFragment recyclerviewFragment = RecyclerviewFragment.create(this);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        changeFragment(R.id.container, CalculatorFragment.create(this));
+    }
+
+    public void changeFragment(int container, Fragment fragment){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(container, fragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void openNextFragment(String s ) {
+        Bundle bundle = new Bundle();
+        bundle.putString("key", s);
+        recyclerviewFragment.setArguments(bundle);
+        changeFragment(R.id.container, new RecyclerviewFragment());
+        getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void addResult (String s) {
+        changeFragment(R.id.container, new RecyclerviewFragment());
+        Log.e("ololo", "addResult: " + s);
+        recyclerviewFragment.showText(s);
+    }
+
+
+
+}

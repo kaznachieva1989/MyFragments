@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='Myhomework_fragments_with recyclerview'
