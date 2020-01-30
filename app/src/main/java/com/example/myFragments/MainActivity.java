@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity implements CalculatorFragment.IButtonFragment1, RecyclerviewFragment.IButtonFragment2 {
-
-    RecyclerviewAdapter adapter;
     CalculatorFragment calculatorFragment = CalculatorFragment.create(this);
     RecyclerviewFragment recyclerviewFragment = RecyclerviewFragment.create(this);
 
@@ -19,13 +17,14 @@ public class MainActivity extends AppCompatActivity implements CalculatorFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        changeFragment(R.id.container, CalculatorFragment.create(this));
+        changeFragment(R.id.container, calculatorFragment);
     }
 
     public void changeFragment(int container, Fragment fragment){
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(container, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
@@ -34,17 +33,26 @@ public class MainActivity extends AppCompatActivity implements CalculatorFragmen
         Bundle bundle = new Bundle();
         bundle.putString("key", s);
         recyclerviewFragment.setArguments(bundle);
-        changeFragment(R.id.container, new RecyclerviewFragment());
-        getSupportFragmentManager().popBackStack();
+        changeFragment(R.id.container, recyclerviewFragment);
     }
+
+//    @Override
+//    public void addResult (String s) {
+//        Log.e("ololo", "addResult: " + s);
+//        recyclerviewFragment.showText(s);
+//    }
+
 
     @Override
-    public void addResult (String s) {
-        changeFragment(R.id.container, new RecyclerviewFragment());
-        Log.e("ololo", "addResult: " + s);
-        recyclerviewFragment.showText(s);
+    public void returnToCalc() {
+//        CalculatorFragment calculatorFragment = new CalculatorFragment();
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.replace(R.id.container, calculatorFragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+
+        changeFragment(R.id.container,calculatorFragment);
+//        getFragmentManager().popBackStackImmediate();
     }
-
-
-
 }

@@ -11,6 +11,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,15 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerviewFragment extends Fragment  {
 
 
-
     public interface IButtonFragment2 {
-
+        void returnToCalc();
     }
 
     IButtonFragment2 listener2;
-    IButtonFragment2 listener3;
-
-
 
     RecyclerviewAdapter adapter;
     Button button_back;
@@ -58,7 +56,7 @@ public class RecyclerviewFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
 
 
-        adapter = new RecyclerviewAdapter(getContext(), data);
+        adapter = new RecyclerviewAdapter();
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         RecyclerviewFragment recycler = new RecyclerviewFragment();
       //  adapter.listener3 = (IButtonFragment2)getActivity();
@@ -69,19 +67,24 @@ public class RecyclerviewFragment extends Fragment  {
         button_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listener2.returnToCalc();
+
+
 
             }
         });
+
         Bundle bundle = getArguments();
         if(bundle != null){
             data = bundle.getString("key");
+            Log.e("ololo", "addText: " + data);
             adapter.addText(data);
         }
     }
 
-    public void showText(String s) {
-        Log.e("ololo", "showText: " + s);
-//        adapter.addText(data);
-    }
+//    public void showText(String s) {
+//        Log.e("ololo", "showText: " + s);
+//        adapter.notifyDataSetChanged();
+//    }
 }
 

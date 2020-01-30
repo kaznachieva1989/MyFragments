@@ -20,7 +20,7 @@ import android.widget.TextView;
 public class CalculatorFragment extends Fragment {
     public interface IButtonFragment1 {
         void openNextFragment(String s);
-        void addResult(String s);
+        //void addResult(String s);
     }
 
     IButtonFragment1 listener;
@@ -119,21 +119,26 @@ public class CalculatorFragment extends Fragment {
                                 secondNumber += firstNumber;
                                 calculatorScreen.setText(String.valueOf(secondNumber));
                                 String result = calculatorScreen.getText().toString();
-
                                 listener.openNextFragment(result);
-                                listener.addResult(result);
+                               // listener.addResult(result);
                             }
                             if (currentOp == '-') {
                                 firstNumber -= secondNumber;
                                 calculatorScreen.setText(String.valueOf(firstNumber));
+                                String result = calculatorScreen.getText().toString();
+                                listener.openNextFragment(result);
                             }
                             if (currentOp == '*') {
                                 secondNumber *= firstNumber;
                                 calculatorScreen.setText(String.valueOf(secondNumber));
+                                String result = calculatorScreen.getText().toString();
+                                listener.openNextFragment(result);
                             }
                             if (currentOp == '/') {
                                 firstNumber /= secondNumber;
                                 calculatorScreen.setText(String.valueOf(firstNumber));
+                                String result = calculatorScreen.getText().toString();
+                                listener.openNextFragment(result);
                             }
                         }
                         break;

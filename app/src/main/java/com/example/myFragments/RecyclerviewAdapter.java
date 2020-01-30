@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
     ArrayList<String> data;
 
-    public RecyclerviewAdapter(Context context, String data){
+    public RecyclerviewAdapter(){
         this.data = new ArrayList<>();
         this.data.add("History results");
     }
