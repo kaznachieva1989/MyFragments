@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ public class RecyclerviewFragment extends Fragment {
 
     IButtonFragment2 listener2;
 
+    TextView calculatorScreen;
     RecyclerviewAdapter adapter;
     Button button_back;
     String data;
@@ -50,9 +52,12 @@ public class RecyclerviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapter = new RecyclerviewAdapter();
+        if (adapter == null){
+            adapter = new RecyclerviewAdapter();
+        }
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         button_back = view.findViewById(R.id.btn_back);
@@ -69,6 +74,9 @@ public class RecyclerviewFragment extends Fragment {
             Log.e("ololo", "addText: " + data);
             adapter.addText(data);
         }
+
+        calculatorScreen = view.findViewById(R.id.calculatorScreen);
+        calculatorScreen.setText(data);
     }
 }
 
