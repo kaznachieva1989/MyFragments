@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerViewHolder extends RecyclerView.ViewHolder {
     TextView textView;
 
-
-
     public RecyclerViewHolder(@NonNull View itemView) {
         super(itemView);
 
         textView = itemView.findViewById(R.id.viewholder_text);
     }
 
-    void setText(String s){
+    void setText(String s) {
         textView.setText(s);
     }
 }

@@ -2,36 +2,33 @@ package com.example.myFragments;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class CalculatorFragment extends Fragment {
-    public interface IButtonFragment1 {
-        void openNextFragment(String s);
-        //void addResult(String s);
-    }
 
     IButtonFragment1 listener;
 
-    public static CalculatorFragment create(IButtonFragment1 listener){
-        CalculatorFragment calculatorFragment = new CalculatorFragment();
-        calculatorFragment.listener = listener;
-        return  calculatorFragment;
+    public interface IButtonFragment1 {
+        void openNextFragment(String s);
     }
 
-
+    public static CalculatorFragment create(IButtonFragment1 listener) {
+        CalculatorFragment calculatorFragment = new CalculatorFragment();
+        calculatorFragment.listener = listener;
+        return calculatorFragment;
+    }
 
     private boolean isOpPressed = false;
     private double firstNumber = 0;
@@ -46,7 +43,6 @@ public class CalculatorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_calculator, container, false);
     }
 
@@ -120,7 +116,6 @@ public class CalculatorFragment extends Fragment {
                                 calculatorScreen.setText(String.valueOf(secondNumber));
                                 String result = calculatorScreen.getText().toString();
                                 listener.openNextFragment(result);
-                               // listener.addResult(result);
                             }
                             if (currentOp == '-') {
                                 firstNumber -= secondNumber;
@@ -213,7 +208,6 @@ public class CalculatorFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 calculatorScreen.setText("");
-
             }
         });
     }

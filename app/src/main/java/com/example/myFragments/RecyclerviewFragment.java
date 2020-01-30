@@ -11,8 +11,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,8 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecyclerviewFragment extends Fragment  {
-
+public class RecyclerviewFragment extends Fragment {
 
     public interface IButtonFragment2 {
         void returnToCalc();
@@ -40,14 +37,12 @@ public class RecyclerviewFragment extends Fragment  {
     }
 
     public RecyclerviewFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_recyclerview, container, false);
     }
 
@@ -55,11 +50,8 @@ public class RecyclerviewFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
         adapter = new RecyclerviewAdapter();
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        RecyclerviewFragment recycler = new RecyclerviewFragment();
-      //  adapter.listener3 = (IButtonFragment2)getActivity();
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -68,23 +60,15 @@ public class RecyclerviewFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 listener2.returnToCalc();
-
-
-
             }
         });
 
         Bundle bundle = getArguments();
-        if(bundle != null){
+        if (bundle != null) {
             data = bundle.getString("key");
             Log.e("ololo", "addText: " + data);
             adapter.addText(data);
         }
     }
-
-//    public void showText(String s) {
-//        Log.e("ololo", "showText: " + s);
-//        adapter.notifyDataSetChanged();
-//    }
 }
 

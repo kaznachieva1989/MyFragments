@@ -1,6 +1,5 @@
 package com.example.myFragments;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
+
     ArrayList<String> data;
 
-    public RecyclerviewAdapter(){
+    public RecyclerviewAdapter() {
         this.data = new ArrayList<>();
         this.data.add("History results");
     }
+
     RecyclerviewFragment.IButtonFragment2 listener3;
 
     @NonNull
